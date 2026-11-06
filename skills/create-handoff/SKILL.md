@@ -40,9 +40,9 @@ If little is worth preserving, write a short handoff that states the objective a
 
 The next agent will act on what you write, so:
 
-- State as fact only what you verified, with brief evidence: command and result, `path:line`, commit, or "per the user". Present everything else as a decision, assumption, hypothesis, or open question.
+- State as fact only what you verified, with brief evidence: command and result, `path:line`, commit, "per the user", or "per the earlier handoff". Present everything else as a decision, assumption, hypothesis, or open question.
 - Check what you're unsure of, including whether something is already documented, against the repo before writing. Keep checks cheap (git commands, targeted searches): this session's context is probably nearly full, so don't reread large files or run builds or test suites for the handoff.
-- Report a test or check only as it actually ran in this session, with its result, and note changes made since it last ran. If none ran, say so.
+- Report a test or check as run only if it ran in this session, with its result and any changes made since; if nothing ran, say so. Keep a relevant result from an earlier handoff, the user, or CI with its source, the revision it ran against if known, and "not rerun this session".
 - If something that matters is lost to you, such as earlier context after compaction, say so at the top instead of reconstructing it.
 - Leave out secrets and personal data, including in quoted errors and logs: API keys, tokens, passwords, private keys, and credentials in URLs or connection strings. If the next session needs a secret, say where it lives (an env var or file), never its value.
 
@@ -84,7 +84,7 @@ Write concisely, one line per item where possible, but spell out anything only t
 ## Save and report
 
 1. Before saving, reread the draft as the next agent would. Cut every line that the Read first artifacts or the code already make clear, and anything you worked out only while writing, such as a new gap in the spec or a test plan: the next session can do that itself. Then tighten what remains.
-2. Save under `.handoffs/` at the repository root (outside a git repository, the current directory). If `.handoffs/` doesn't exist, create it with a `.gitignore` containing `*`: the directory then ignores itself, so handoffs are never committed and the repository's own ignore files and config stay untouched.
+2. Save under `.handoffs/` at the repository root (outside a git repository, the current directory). If `.handoffs/.gitignore` is missing, create it containing `*`: the directory then ignores itself, so ordinary staging such as `git add .` skips handoffs, and the repository's own ignore files and config stay untouched. Leave an existing `.handoffs/.gitignore` as it is. In a git repository, check that `git status --porcelain -- .handoffs` prints nothing after saving; if it lists anything, tell the user.
 3. Name the file `YYYY-MM-DD-HHMM-<slug>.md`, from the current local time and a short kebab-case slug for the objective or task. Never overwrite an existing file unless the user explicitly asks you to update it; if the name is taken, append `-2`, `-3`, and so on.
 4. Create nothing beyond these files. Don't modify code, tests, specs, or anything else, and don't stage, commit, or push.
 5. Reply with the handoff's absolute path and, only if needed, one line on anything the user should handle before the next session, such as uncommitted work.
