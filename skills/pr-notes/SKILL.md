@@ -16,7 +16,7 @@ Draft the title and description for the current branch's pull request. Do not mo
 
 ## Write
 
-Read the repo's CLAUDE.md and AGENTS.md, whichever exist, and follow their prose rules. If the repo has a pull request template, fill its headings instead of the ones below. Write for a reviewer who has the diff open: say what changed and how it was checked, and leave the details to the diff. Scale the bullets to the diff: a small PR may need two.
+Read the repo's CLAUDE.md and AGENTS.md, whichever exist, and follow their prose rules. If the repo has a pull request template, fill its headings instead of the ones below. Write for a reviewer who has the diff open: say what changed and how it was checked, and leave the details to the diff. Describe changes in plain English. Never use internal labels such as "Part 4" or "Step 4", or placeholders such as `$1`. Scale the bullets to the diff: a small PR may need two.
 
 - **Title:** one line under 70 characters in the repo's commit-subject style, summarizing the net change. Never the branch name.
 - **Summary:** at most two sentences: what changes and why, for a reader outside the project. Never pack a list into one sentence. Name any breaking change here too.
